@@ -474,7 +474,7 @@ static void label_boot_extension(struct pxe_context *ctx,
 			slash = "";
 
 		dir_len = strlen(label->fdtdir) + strlen(slash) + 1;
-		overlay_dir = calloc(1, len);
+		overlay_dir = calloc(1, dir_len);
 		if (!overlay_dir)
 			return;
 
@@ -482,6 +482,9 @@ static void label_boot_extension(struct pxe_context *ctx,
 			 slash);
 	} else {
 		dir_len = 2;
+		overlay_dir = calloc(1, dir_len);
+		if (!overlay_dir)
+			return;
 		snprintf(overlay_dir, dir_len, "/");
 	}
 
